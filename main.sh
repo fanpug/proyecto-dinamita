@@ -9,12 +9,16 @@ opcion=""#para entrar le menu 1
 opcion2=""#para navegar en el menu 2
 case $1 in
   -a|-A) #Condicion
+  until [[ $opcion == "5" ]]; do
+    #statements
+    #statements
   echo "Bienvenido a la guía rápida de Agile, para continuar seleccione un tema:
 
             1.-SCRUM
             2.-X.P.
             3.-Kanban
             4.-Crystal
+            5.-Exit
 "
 
 read -p "ingrese la opcion:" opcion
@@ -26,6 +30,7 @@ read -p "ingrese la opcion:" opcion
             2.-Buscar
             3.-Eliminar información
             4.-Leer base de información.
+            5.-Regresar
 
 "
                     read -p "ingrese la opcion:" opcion2
@@ -82,13 +87,16 @@ esac
 esac
     ;;
     esac
+  done
 ;;
     -t|-T)
+      until [[ $opcion == "4" ]]; do
     echo "Bienvenido a la guía rápida de Agile, para continuar seleccione un tema:
 
               1.-Cascada
               2.-Espiral
               3.-Modelo V
+              4.-Salir
 
   "
   read -p "ingrese la opcion:" opcion
@@ -141,7 +149,8 @@ esac
                     esac
       ;;
 
-      esac
+    esac
+  done
     ;;
     *)
     echo "no es opcion valida "
