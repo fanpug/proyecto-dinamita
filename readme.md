@@ -8,6 +8,7 @@ Estos repositorios fueron creados para el proyecto del primer parcial del equipo
 	* [Bitbucket]()
 
 Los miembros del equipo Dinamita son:
+
 	*Humberto Alejandro Navarro Andujo - Capitan
 
 	*Sergio Armando Rodriguez Nava

@@ -1,16 +1,21 @@
 #!/bin/bash
-#vamos a tener varias secciones
-#lo primero que tenemos que hacer es un switch/case o un if para recibir el parametro
-#despues desplegar las opciones de cada parametro (osea metodologias agiles o tradicionales)
-#por ahora vamos a hacer esas cosas
-
+#Inicio del codigo
 #Para recibir parametros, el script los toma como variables especiales
-opcion=""#para entrar le menu 1
-opcion2=""#para navegar en el menu 2
+
+
+################################################################################
+##########Declaracion de variables para navegar dentro de los menus#############
+
+#Variable para el menu principal de metodologias Agile/menu 1
+opcion=""
+#Variable para el menu principal de metodologias tradicionales/menu 2
+opcion2=""
+
+###############################################################################
+#######################Inicio del codigo del script############################
 case $1 in
   -a|-A) #Condicion
   until [[ $opcion == "5" ]]; do
-    #statements
     #statements
   echo "Bienvenido a la guía rápida de Agile, para continuar seleccione un tema:
 
