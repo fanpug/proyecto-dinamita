@@ -8,11 +8,17 @@
 
 #Variable para el menu principal de metodologias Agile/menu 1
 opcion=""
+
 #Variable para el menu principal de metodologias tradicionales/menu 2
 opcion2=""
 
+#Arreglos con los nombres para cada tipo de metodologia
+nombresAgiles=('SCRUM' 'X.P.' 'Kanban' 'Crystal')
+nombresTradicionales=('Cascada' 'Espiral' 'Modelo V')
+
 ###############################################################################
 #######################Inicio del codigo del script############################
+		##############-METODOLOGIAS AGILES-#################
 case $1 in
   -a|-A) #Condicion
   until [[ $opcion == "5" ]]; do
@@ -26,10 +32,11 @@ case $1 in
             5.-Exit
 "
 
-read -p "ingrese la opcion:" opcion
-  case $opcion in
-    1)
-    echo "Usted esta en la sección SCRUM, seleccione la opción que desea utilizar.
+read -p "Ingrese la opcion: " opcion
+
+	case $opcion in
+     	1|2|3|4)
+    echo "Usted esta en la sección de ${nombresAgiles[opcion - 1]}, seleccione la opción que desea utilizar.
 
             1.-Agregar información
             2.-Buscar
@@ -38,65 +45,57 @@ read -p "ingrese la opcion:" opcion
             5.-Regresar
 
 "
-                    read -p "ingrese la opcion:" opcion2
+                    read -p "Ingrese la opcion: " opcion2
                     case $opcion2 in
-                      1) echo "codigo para agregar info";;
-                      2) echo "codigo para buscar info";;
-                      3)echo "codigo para eliminar info";;
-                      4) echo "codigo para leer base info";;
+                      1)
+			#Creamos el archivo necesario (si ya existe el archivo esta instruccion no pasa nada)
+                        touch ${nombresAgiles[opcion-1]}.inf
+
+                        #Captura el titulo y la definicion del concepto a agregar
+                        read -p "Introduzca el titulo del concepto: " titulo
+                        echo ''
+                        read -p "Agregue la definicion del concepto: " descripcion
+
+                        #Agregamos la informacion solicitada en el formato apropiado al documento
+                        echo "[$titulo].- $descripcion" >> ./${nombresAgiles[opcion-1]}.inf
+                        echo ''
+                        echo ''
+
+                         ;;
+                       2)
+                        #Capturamos la palabra o concepto que queremos buscar
+                        read -p "Introduzca el concepto que desea buscar: " buscar
+                        echo "Estos son los resultados encontrados: "
+                        echo ''
+                        echo ''
+                        #Buscamos e imprimimos lo que encontramos
+                        awk '/$buscar/{print $0}' ./${nombresAgiles[opcion-1]}.inf
+
+                         ;;
+                       3)
+                        echo "codigo para eliminar info"
+
+
+                         ;;
+                       4)
+                        #Imprimir el archivo solicitado
+                        cat ${nombresAgiles[opcion-1]}.inf
+
+
+			;;
+
                     esac
-    ;;
-    2) echo "Usted esta en la sección X.P, seleccione la opción que desea utilizar.
+	;;
+	esac
 
-            1.-Agregar información
-            2.-Buscar
-            3.-Eliminar información
-            4.-Leer base de información.
-"
-                    read -p "ingrese la opcion:" opcion2
-                    case $opcion2 in
-                    1) echo "codigo para agregar info";;
-                    2) echo "codigo para buscar info";;
-                    3)echo "codigo para eliminar info";;
-                    4) echo "codigo para leer base info";;
-esac
-    ;;
-    3) echo "Usted esta en la sección Kanban, seleccione la opción que desea utilizar.
 
-            1.-Agregar información
-            2.-Buscar
-            3.-Eliminar información
-            4.-Leer base de información.
-"
-                    read -p "ingrese la opcion:" opcion2
-                    case $opcion2 in
-                      1) echo "codigo para agregar info";;
-                      2) echo "codigo para buscar info";;
-                      3)echo "codigo para eliminar info";;
-                      4) echo "codigo para leer base info";;
-esac
-    ;;
-    4) echo "Usted esta en la sección Crystal, seleccione la opción que desea utilizar.
 
-            1.-Agregar información
-            2.-Buscar
-            3.-Eliminar información
-            4.-Leer base de información.
-"
-                    read -p "ingrese la opcion:" opcion2
-                    case $opcion2 in
-                      1) echo "codigo para agregar info";;
-                      2) echo "codigo para buscar info";;
-                      3)echo "codigo para eliminar info";;
-                      4) echo "codigo para leer base info";;
-esac
-    ;;
-    esac
-  done
+		##############-METODOLOGIAS TRADICIONALES-#################
+done
 ;;
     -t|-T)
       until [[ $opcion == "4" ]]; do
-    echo "Bienvenido a la guía rápida de Agile, para continuar seleccione un tema:
+    echo "Bienvenido a la guía rápida de metodologias Tradicionales, para continuar seleccione un tema:
 
               1.-Cascada
               2.-Espiral
@@ -104,60 +103,64 @@ esac
               4.-Salir
 
   "
-  read -p "ingrese la opcion:" opcion
-    case $opcion in
-      1)
-      echo "Usted esta en la sección Cascada, seleccione la opción que desea utilizar.
+  read -p "Ingrese la opcion: " opcion
 
-              1.-Agregar información
-              2.-Buscar
-              3.-Eliminar información
-              4.-Leer base de información.
-  "
-                      read -p "ingrese la opcion:" opcion2
-                      case $opcion2 in
-                        1) echo "codigo para agregar info";;
-                        2) echo "codigo para buscar info";;
-                        3)echo "codigo para eliminar info";;
-                        4) echo "codigo para leer base info";;
-                      esac
-      ;;
-      2) echo "Usted esta en la sección Espiral, seleccione la opción que desea utilizar.
+	case $opcion in
+     	1|2|3)
+    echo "Usted esta en la sección de ${nombresTradicionales[opcion - 1]}, seleccione la opción que desea utilizar.
 
-              1.-Agregar información
-              2.-Buscar
-              3.-Eliminar información
-              4.-Leer base de información.
-  "
-                    read -p "ingrese la opcion:" opcion2
+            1.-Agregar información
+            2.-Buscar
+            3.-Eliminar información
+            4.-Leer base de información.
+            5.-Regresar
+
+"
+                    read -p "Ingrese la opcion: " opcion2
                     case $opcion2 in
-                      1) echo "codigo para agregar info";;
-                      2) echo "codigo para buscar info";;
-                      3)echo "codigo para eliminar info";;
-                      4) echo "codigo para leer base info";;
+                       1)
+			#Creamos el archivo necesario (si ya existe el archivo esta instruccion no pasa nada)
+			touch ${nombresTradicionales[opcion-1]}.inf
+
+			#Captura el titulo y la definicion del concepto a agregar
+			read -p "Introduzca el titulo del concepto: " titulo
+			echo ''
+			read -p "Agregue la definicion del concepto: " descripcion
+
+			#Agregamos la informacion solicitada en el formato apropiado al documento
+			echo "[$titulo].- $descripcion" >> ./${nombresTradicionales[opcion-1]}.inf
+			echo ''
+			echo ''
+
+                         ;;
+                       2)
+			#Capturamos la palabra o concepto que queremos buscar
+                        read -p "Introduzca el concepto que desea buscar: " buscar
+			echo "Estos son los resultados encontrados: "
+			echo ''
+			echo ''
+			#Buscamos e imprimimos lo que encontramos
+			awk '/$buscar/{print $0}' ./${nombresTradicionales[opcion-1]}.inf
+
+                         ;;
+                       3)
+                        echo "codigo para eliminar info"
+
+
+                         ;;
+                       4)
+                        #Imprimir el archivo solicitado
+			cat ${nombresTradicionales[opcion-1]}.inf
+
+
+			 ;;
+
                     esac
-      ;;
-      3) echo "Usted esta en la sección Modelo V, seleccione la opción que desea utilizar.
-
-              1.-Agregar información
-              2.-Buscar
-              3.-Eliminar información
-              4.-Leer base de información.
-
-  "
-                    read -p "ingrese la opcion:" opcion2
-                    case $opcion2 in
-                      1) echo "codigo para agregar info";;
-                      2) echo "codigo para buscar info";;
-                      3)echo "codigo para eliminar info";;
-                      4) echo "codigo para leer base info";;
-                    esac
-      ;;
-
-    esac
+	;;
+	esac
   done
     ;;
     *)
-    echo "no es opcion valida "
+    echo "No es una opcion valida"
     ;;
 esac
