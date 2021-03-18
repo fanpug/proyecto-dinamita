@@ -63,23 +63,41 @@ read -p "Ingrese la opcion: " opcion
 
                          ;;
                        2)
-                        #Capturamos la palabra o concepto que queremos buscar
+                             #Capturamos la palabra o concepto que queremos buscar
                         read -p "Introduzca el concepto que desea buscar: " buscar
-                        echo "Estos son los resultados encontrados: "
-                        echo ''
-                        echo ''
-                        #Buscamos e imprimimos lo que encontramos
-                        awk '/$buscar/{print $0}' ./${nombresAgiles[opcion-1]}.inf
+                          #statements
+                          if [ -f ./${nombresAgiles[opcion-1]}.inf ]
+                            then
+                              echo "Estos son los resultados encontrados: "
+                              echo ''
+                              grep -i $buscar ./${nombresAgiles[opcion-1]}.inf
+                              echo ''
 
+                            else
+                              echo "El archivo no existe"
+                            fi
+
+                        #Buscamos e imprimimos lo que encontramos
                          ;;
                        3)
-                        echo "codigo para eliminar info"
-
-
+                        if [ -f ./${nombresAgiles[opcion-1]}.inf ]
+                         then
+                           rm ./${nombresAgiles[opcion-1]}.inf
+                          echo "El archivo de ${nombresAgiles[opcion-1]} a sido eliminado con exito"
+                         else
+                           echo "El archivo no existe"
+                         fi
                          ;;
                        4)
+                       if [ -f ./${nombresAgiles[opcion-1]}.inf ]
+                        then
+                          cat ${nombresAgiles[opcion-1]}.inf
+                        else
+                          echo "El archivo no existe"
+                        fi
                         #Imprimir el archivo solicitado
-                        cat ${nombresAgiles[opcion-1]}.inf
+
+
 
 
 			;;
@@ -136,23 +154,38 @@ done
                        2)
 			#Capturamos la palabra o concepto que queremos buscar
                         read -p "Introduzca el concepto que desea buscar: " buscar
-			echo "Estos son los resultados encontrados: "
-			echo ''
-			echo ''
-			#Buscamos e imprimimos lo que encontramos
-			awk '/$buscar/{print $0}' ./${nombresTradicionales[opcion-1]}.inf
+                        if [ -f ./${nombresTradicionales[opcion-1]}.inf ]
+                          then
+                            echo "Estos son los resultados encontrados: "
+                            echo ''
+                            grep -i $buscar ./${nombresTradicionales[opcion-1]}.inf
+                            echo ''
+
+                          else
+                            echo "El archivo no existe"
+                          fi
+
 
                          ;;
                        3)
-                        echo "codigo para eliminar info"
+                       if [ -f ./${nombresTradicionales[opcion-1]}.inf ]
+                        then
+                          rm ./${nombresTradicionales[opcion-1]}.inf
+                         echo "El archivo de ${nombresTradicionales[opcion-1]} a sido eliminado con exito"
+                        else
+                          echo "El archivo no existe"
+                        fi
 
 
                          ;;
                        4)
                         #Imprimir el archivo solicitado
-			cat ${nombresTradicionales[opcion-1]}.inf
-
-
+                        if [ -f ./${nombresTradicionales[opcion-1]}.inf ]
+                         then
+                           cat ${nombresTradicionales[opcion-1]}.inf
+                         else
+                           echo "El archivo no existe"
+                         fi
 			 ;;
 
                     esac
