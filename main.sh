@@ -18,9 +18,11 @@ nombresTradicionales=('Cascada' 'Espiral' 'Modelo-V')
 
 ###############################################################################
 #######################Inicio del codigo del script############################
-##############-METODOLOGIAS AGILES-#################
+
+              ##############-METODOLOGIAS AGILES-#################
+
 case $1 in
-    -a|-A) #Condicion
+    -a|-A|a|A) #Condicion
         until [[ $opcion == "5" ]]; do
             #Imprimimos el menu de metodologias agiles
             echo "Bienvenido a la guía rápida de Agile, para continuar seleccione un tema:
@@ -115,12 +117,13 @@ case $1 in
                     ;;
             esac
 
+        done
+        ;;
 
 
             ##############-METODOLOGIAS TRADICIONALES-#################
-        done
-        ;;
-    -t|-T)
+
+    -t|-T|t|T)
         until [[ $opcion == "4" ]]; do
             #Imprimimos el menu de metodologias tradicionales
             echo "Bienvenido a la guía rápida de metodologias Tradicionales, para continuar seleccione un tema:
