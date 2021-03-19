@@ -1,15 +1,13 @@
 #!/bin/bash
 #Inicio del codigo
-#Para recibir parametros, el script los toma como variables especiales
-
 
 ################################################################################
 ##########Declaracion de variables para navegar dentro de los menus#############
 
-#Variable para el menu principal de metodologias Agile/menu 1
+#Variable para el menu 1 (principal)
 opcion=""
 
-#Variable para el menu principal de metodologias tradicionales/menu 2
+#Variable para el menu 2
 opcion2=""
 
 #Arreglos con los nombres para cada tipo de metodologia
